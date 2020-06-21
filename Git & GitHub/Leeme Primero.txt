@@ -1,0 +1,4 @@
+El desarrollo de este curso fue hecho en el siguiente repositorio: https://github.com/SantiagoLopez0/Portafolio-de-Proyectos
+
+
+La copia del proyecto que se encuentra en este repositorio es la versión al final del curso.
