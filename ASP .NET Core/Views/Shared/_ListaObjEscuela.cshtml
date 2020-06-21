@@ -1,0 +1,19 @@
+@model IEnumerable<ObjetoEscuelaBase>
+
+<table id="mytable" class="table table-bordred table-striped table table-dark table-hover">
+    <thead>
+        <th><input type="checkbox" id="checkall" /></th>
+        <th>Nombre</th>
+        <th>Id</th>
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td><input type="checkbox" class="checkthis" /></td>
+                <td>@obj.Nombre</td>
+                <td>@obj.UniqueId</td>
+            </tr>
+        }
+    </tbody>
+</table>
