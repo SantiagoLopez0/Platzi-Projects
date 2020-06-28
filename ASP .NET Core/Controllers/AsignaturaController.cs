@@ -10,13 +10,19 @@ namespace ASP_.NET_Core.Controllers
     {
         private EscuelaContext _context;
 
+        [Route("Asignatura/")]
         [Route("Asignatura/{asignaturaId}")]
         public IActionResult Index(string asignaturaId)
         {
-            var asignatura = from asig in _context.Asignaturas
-                            where asig.Id == asignaturaId
-                            select asig;
-            return View(asignatura.SingleOrDefault());
+            if(!string.IsNullOrWhiteSpace(asignaturaId))
+            {
+                var asignatura = from asig in _context.Asignaturas
+                                where asig.Id == asignaturaId
+                                select asig;
+                return View(asignatura.SingleOrDefault());
+            }else{
+                return View("MultiAsignatura", _context.Asignaturas.AsEnumerable());
+            }
         }
         public IActionResult MultiAsignatura()
         {

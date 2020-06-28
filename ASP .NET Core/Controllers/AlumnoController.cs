@@ -10,13 +10,18 @@ namespace ASP_.NET_Core.Controllers
     public class AlumnoController : Controller
     {
         private EscuelaContext _context;
-        public IActionResult Index()
-        {
-            var alumno = new Alumno{Nombre = "Pepe Perez",
-                                Id = Guid.NewGuid().ToString()
-            };
 
-            return View(alumno);
+        public IActionResult Index(string Id)
+        {
+            if(!string.IsNullOrWhiteSpace(Id))
+            {
+                var alumno = from al in _context.Alumnos
+                                where al.Id == Id
+                                select al;
+                return View(alumno.SingleOrDefault());
+            }else{
+                return View("MultiAlumno", _context.Alumnos);
+            }
         }
         public IActionResult MultiAlumno()
         {
