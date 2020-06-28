@@ -1,44 +1,34 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ASP_.NET_Core.Models;
 using Microsoft.AspNetCore.Mvc;
-
 
 namespace ASP_.NET_Core.Controllers
 {
     public class AsignaturaController : Controller
     {
-        public IActionResult Index()
-        {
-            var asignatura = new Asignatura{Nombre = "Programación",
-                                UniqueId = Guid.NewGuid().ToString()
-            };
+        private EscuelaContext _context;
 
-            return View(asignatura);
+        [Route("Asignatura/{asignaturaId}")]
+        public IActionResult Index(string asignaturaId)
+        {
+            var asignatura = from asig in _context.Asignaturas
+                            where asig.Id == asignaturaId
+                            select asig;
+            return View(asignatura.SingleOrDefault());
         }
         public IActionResult MultiAsignatura()
         {
-            var listaAsignaturas = new List<Asignatura>(){
-                    new Asignatura{Nombre = "Matematicas",
-                                UniqueId = Guid.NewGuid().ToString()
-                    },
-                    new Asignatura{Nombre = "Educación Fisica",
-                                UniqueId = Guid.NewGuid().ToString()
-                    },
-                    new Asignatura{Nombre = "Castellano",
-                                UniqueId = Guid.NewGuid().ToString()
-                    },
-                    new Asignatura{Nombre = "Naturales",
-                                UniqueId = Guid.NewGuid().ToString()
-                    },
-                    new Asignatura{Nombre = "Programación",
-                                UniqueId = Guid.NewGuid().ToString()
-                    }
-            };
-
+            var asignaturas = _context.Asignaturas;
             ViewBag.Fecha = DateTime.Today;
 
-            return View("MultiAsignatura", listaAsignaturas);
+            return View("MultiAsignatura", asignaturas.AsEnumerable());
+        }
+
+        public AsignaturaController(EscuelaContext context)
+        {
+            _context = context;
         }
     }
 }
