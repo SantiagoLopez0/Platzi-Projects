@@ -474,6 +474,9 @@ dist
 !.vscode/launch.json
 !.vscode/extensions.json
 *.code-workspace
+obj
+bin
+appsettings.Development.json
 
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
