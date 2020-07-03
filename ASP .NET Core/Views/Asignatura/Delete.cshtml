@@ -1,0 +1,30 @@
+﻿@model Asignatura
+
+@{
+    ViewData["Title"] = "Borrar Asignatura";
+    Layout = "Simple";
+}
+
+<h1>@ViewData["Title"]</h1>
+<h2>@ViewBag.Mensaje</h2>
+
+<p>
+    Nombre: @Model.Nombre <br/>
+    Id: @Model.Id
+</p>
+<br/>
+
+<strong>¿Esta seguro que desea borrar la asignaruta?</strong>
+
+<form method="POST">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+
+    <input type="submit" value="Si" class="btn btn-primary"/>
+    <a class="btn btn-light" href="/Curso/">No</a>
+</form>
+<br/>
+<a class="btn btn-light" href="/Curso/">Volver a lista</a>
+
+
+<p>@ViewBag.Fecha</p>

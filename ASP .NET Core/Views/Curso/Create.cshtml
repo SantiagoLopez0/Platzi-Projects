@@ -1,0 +1,39 @@
+﻿@model Curso
+
+@{
+    ViewData["Title"] = "Creación De Curso";
+    Layout = "Simple";
+}
+<h1>@ViewData["Title"]</h1>
+<h3>@ViewBag.Mensaje</h3>
+<div asp-validation-summary="All"></div>
+
+<form method="POST">
+    <div>
+        <label asp-for="Nombre"></label>
+        <input asp-for="Nombre" type="text" required/>
+    </div>
+    <div>
+        <label asp-for="Dirección"></label>
+        <input asp-for="Dirección" type="text"/>
+    </div>
+    <div>
+        <label asp-for="Jornada"></label>
+        <!--Select funcional con html-->
+        <!--select name="Jornada" asp-for="Jornada">
+            <option value="Mañana">Mañana</option>
+            <option value="Tarde">Tarde</option>
+            <option value="Noche">Noche</option>
+        </select-->
+
+        <!--Select funcional con razor-->
+        @Html.DropDownList(
+            "Jornada", Html.GetEnumSelectList<TiposJornada>(),
+            "Seleccione una Jornada",
+            new {@class = "form-control"}
+        );
+    </div>
+    <input type="submit"/>
+</form>
+
+<p>@ViewBag.Fecha</p>

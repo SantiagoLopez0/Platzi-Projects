@@ -1,0 +1,49 @@
+﻿@model Curso
+
+@{
+    ViewData["Title"] = "Edición De Curso";
+    ViewData["CursoId"] = Model.Id;
+    Layout = "Simple";
+}
+<h1>@ViewData["Title"]</h1>
+<br/>
+<h3>@ViewBag.Mensaje</h3>
+
+<p>@Model.Nombre</p>
+<form method="POST" asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+    <div>
+        <label asp-for="Nombre"></label>
+        <input asp-for="Nombre" type="text" name="nombre" placeholder="Nombre del curso" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Dirección"></label>
+        <input asp-for="Dirección" type="text" name="direccion" placeholder="Dirección del curso" class="form-control" />
+        <span asp-validation-for="Dirección" class="text-danger"></span>
+    </div>
+    <div>
+        <label asp-for="Jornada"></label>
+        <!--Select funcional con html-->
+        <!--select name="Jornada" asp-for="Jornada">
+            <option value="Mañana">Mañana</option>
+            <option value="Tarde">Tarde</option>
+            <option value="Noche">Noche</option>
+        </select-->
+
+        <!--Select funcional con razor-->
+        @Html.DropDownList(
+            "Jornada", Html.GetEnumSelectList<TiposJornada>(),
+            "Seleccione una Jornada",
+            new {@class = "form-control", @name = "jornada"}
+        );
+    </div>
+    <input type="submit" value="Save" class="btn btn-primary"/>
+</form>
+
+<p>@ViewBag.Fecha</p>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

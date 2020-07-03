@@ -1,0 +1,27 @@
+﻿@model Asignatura
+
+@{
+    ViewData["Title"] = "Edición De Asignatura";
+    Layout = "Simple";
+}
+<h1>@ViewData["Title"]</h1>
+<br/>
+<h3>@ViewBag.Mensaje</h3>
+
+<p>@Model.Nombre</p>
+<form method="POST" asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Id" />
+    <div>
+        <label asp-for="Nombre"></label>
+        <input asp-for="Nombre" type="text" name="nombre" placeholder="Nombre de la Asignatura" class="form-control" />
+        <span asp-validation-for="Nombre" class="text-danger"></span>
+    </div>
+    <input type="submit" value="Save" class="btn btn-primary"/>
+</form>
+
+<p>@ViewBag.Fecha</p>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

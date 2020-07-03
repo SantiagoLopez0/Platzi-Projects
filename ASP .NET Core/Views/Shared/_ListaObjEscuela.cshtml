@@ -13,6 +13,8 @@
                 <td><input type="checkbox" class="checkthis" /></td>
                 <td>@obj.Nombre</td>
                 <td>@obj.Id</td>
+                <td><a class="btn btn-light" asp-action="Delete" asp-route-id="@obj.Id">Borrar</a></td>
+                <td><a class="btn btn-light" asp-action="Edit" asp-route-id="@obj.Id">Editar</a></td>
             </tr>
         }
     </tbody>
