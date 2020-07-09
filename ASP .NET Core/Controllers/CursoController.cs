@@ -47,7 +47,7 @@ namespace ASP_.NET_Core.Controllers
         // GET: Curso/Create
         public IActionResult Create()
         {
-            ViewData["EscuelaId"] = new SelectList(_context.Escuelas, "Id", "Id");
+            ViewData["EscuelaId"] = new SelectList(_context.Escuelas, "Id", "Nombre");
             return View();
         }
 
@@ -56,15 +56,16 @@ namespace ASP_.NET_Core.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Nombre,Jornada,Dirección,EscuelaId,Id")] Curso curso)
+        public async Task<IActionResult> Create([Bind("Nombre,Jornada,Dirección,EscuelaId")] Curso curso)
         {
             if (ModelState.IsValid)
             {
+                curso.Id = Guid.NewGuid().ToString();
                 _context.Add(curso);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EscuelaId"] = new SelectList(_context.Escuelas, "Id", "Id", curso.EscuelaId);
+            ViewData["EscuelaId"] = new SelectList(_context.Escuelas, "Id", "Nombre", curso.EscuelaId);
             return View(curso);
         }
 
@@ -81,7 +82,7 @@ namespace ASP_.NET_Core.Controllers
             {
                 return NotFound();
             }
-            ViewData["EscuelaId"] = new SelectList(_context.Escuelas, "Id", "Id", curso.EscuelaId);
+            ViewData["EscuelaId"] = new SelectList(_context.Escuelas, "Id", "Nombre", curso.EscuelaId);
             return View(curso);
         }
 

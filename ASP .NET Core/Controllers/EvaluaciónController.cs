@@ -48,8 +48,8 @@ namespace ASP_.NET_Core.Controllers
         // GET: Evaluación/Create
         public IActionResult Create()
         {
-            ViewData["AlumnoId"] = new SelectList(_context.Alumnos, "Id", "Id");
-            ViewData["AsignaturaId"] = new SelectList(_context.Asignaturas, "Id", "Id");
+            ViewData["AlumnoId"] = new SelectList(_context.Alumnos, "Id", "Nombre");
+            ViewData["AsignaturaId"] = new SelectList(_context.Asignaturas, "Id", "Nombre");
             return View();
         }
 
@@ -58,10 +58,11 @@ namespace ASP_.NET_Core.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AlumnoId,AsignaturaId,Nota,Id,Nombre")] Evaluación evaluación)
+        public async Task<IActionResult> Create([Bind("AlumnoId,AsignaturaId,Nota,Nombre")] Evaluación evaluación)
         {
             if (ModelState.IsValid)
             {
+                evaluación.Id = Guid.NewGuid().ToString();
                 _context.Add(evaluación);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -84,8 +85,8 @@ namespace ASP_.NET_Core.Controllers
             {
                 return NotFound();
             }
-            ViewData["AlumnoId"] = new SelectList(_context.Alumnos, "Id", "Id", evaluación.AlumnoId);
-            ViewData["AsignaturaId"] = new SelectList(_context.Asignaturas, "Id", "Id", evaluación.AsignaturaId);
+            ViewData["AlumnoId"] = new SelectList(_context.Alumnos, "Id", "Nombre", evaluación.AlumnoId);
+            ViewData["AsignaturaId"] = new SelectList(_context.Asignaturas, "Id", "Nombre", evaluación.AsignaturaId);
             return View(evaluación);
         }
 
