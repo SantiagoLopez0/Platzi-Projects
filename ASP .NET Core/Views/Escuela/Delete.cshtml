@@ -1,4 +1,4 @@
-@model ASP_.NET_Core.Models.Curso
+@model ASP_.NET_Core.Models.Escuela
 
 @{
     ViewData["Title"] = "Delete";
@@ -8,20 +8,26 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Curso</h4>
+    <h4>Escuela</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Nombre)
+            @Html.DisplayNameFor(model => model.AñoCreación)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Nombre)
+            @Html.DisplayFor(model => model.AñoCreación)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Jornada)
+            @Html.DisplayNameFor(model => model.Pais)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Jornada)
+            @Html.DisplayFor(model => model.Pais)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Ciudad)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Ciudad)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Dirección)
@@ -30,11 +36,17 @@
             @Html.DisplayFor(model => model.Dirección)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Escuela)
+            @Html.DisplayNameFor(model => model.TipoEscuela)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Escuela.Id)
-        </dd class>
+            @Html.DisplayFor(model => model.TipoEscuela)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
     </dl>
     
     <form asp-action="Delete">
