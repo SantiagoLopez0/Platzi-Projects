@@ -1,10 +1,22 @@
-console.log('Hello, TypeScript 2');
+let muted:boolean = true
+let var1 ="s"
+let people : string[] = []
 
 
-function add(a: number, b: number){
-    return a+b
+interface Rectangulo {
+    ancho: number,
+    alto: number,
 }
 
-const sum = add(2, 3)
+let rect:Rectangulo = {
+    ancho: 4,
+    alto: 7
+}
 
-console.log(sum)
+function area(r: Rectangulo) : number {
+    return r.alto * r.ancho
+}
+
+const areaRect = area(rect)
+
+console.log(areaRect);
