@@ -7,6 +7,12 @@ class MediaPlayer{
       this._initPlugins()
     }
 
+    _initPlugins(){
+      this.plugins.forEach(plugin => {
+        plugin.run(this)
+      })
+    }
+
     play(){
       this.media.play()
     }
@@ -29,12 +35,6 @@ class MediaPlayer{
 
     toggleMute(){
       this.media.muted ? this.unmute() : this.mute()
-    }
-
-    _initPlugins(){
-      this.plugins.forEach(plugin => {
-        plugin.run(this)
-      })
     }
 }
 
