@@ -19,6 +19,7 @@
   "author": "Santiago López",
   "license": "MIT",
   "dependencies": {
+    "node-fetch": "^2.6.0",
     "xmlhttprequest": "^1.8.0"
   }
 }
