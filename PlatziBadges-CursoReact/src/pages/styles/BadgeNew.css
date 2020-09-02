@@ -1,0 +1,8 @@
+.BadgeNew__hero {
+	width: 100%;
+	padding: 2rem 0;
+	background: url("https://static.platzi.com/media/tmp/class-files/git/platzi-badges/platzi-badges-6.NuestraPrimeraPagina/src/images/stars.svg"), #1b1b25;
+	background-repeat: repeat;
+	margin-bottom: 1rem;
+	color: #ffffff;
+}
